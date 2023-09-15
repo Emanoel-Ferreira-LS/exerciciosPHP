@@ -72,7 +72,20 @@
         }
     ?>
 
-    <h2>Usando PHP para imprimir em tabelas</h2>
+    <!-----------------------------------------FORM------------------------------------------------->
+    <h2>Usando PHP para imprimir em tabelas com uso de Form</h2>
+
+   <form action="index.php" method="GET"><!--Enviar os valores para o proprio -->
+        <label for="number">Informe o número:</label>
+        <input type="number" name="number" id="number"><br>
+        <label for="number">Informe ate que numero deve ser multiplicado:</label>
+        <input type="number" name="repet" id="repet">
+        <input type="submit" value="Enviar">
+   </form>
+
+   <br>
+    
+    <!--------------------------------------------TABELAS----------------------------------------------->
 
     <table>
         <tr>
@@ -82,8 +95,9 @@
         </tr>
 
         <?php
-            $num = 3;
-            for($i = 1; $i <= 100; $i++){
+            $num = $_GET['number'];//pegar o numero do input de name number
+            $repet = $_GET['repet'];
+            for($i = 1; $i <= $repet; $i++){
                 $result = $num*$i;
         ?>
 
