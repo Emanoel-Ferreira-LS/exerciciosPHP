@@ -75,11 +75,9 @@
     <!-----------------------------------------FORM------------------------------------------------->
     <h2>Usando PHP para imprimir em tabelas com uso de Form</h2>
 
-   <form action="index.php" method="GET"><!--Enviar os valores para o proprio -->
+   <form action="index.php" method="POST"><!--Enviar os valores para o proprio arquivo(nesse caso)-->
         <label for="number">Informe o número:</label>
         <input type="number" name="number" id="number"><br>
-        <label for="number">Informe ate que numero deve ser multiplicado:</label>
-        <input type="number" name="repet" id="repet">
         <input type="submit" value="Enviar">
    </form>
 
@@ -95,9 +93,13 @@
         </tr>
 
         <?php
-            $num = $_GET['number'];//pegar o numero do input de name number
-            $repet = $_GET['repet'];
-            for($i = 1; $i <= $repet; $i++){
+            if(isset($_POST['number']) && !empty($_POST['number'])){//verificando se a variavel está setada(existe) e se ele possui algun valor
+                $num = $_POST['number'];//pegar o numero do input de name number
+            }else{
+                $num = 1;
+            }
+
+            for($i = 1; $i <= 5; $i++){
                 $result = $num*$i;
         ?>
 
@@ -111,6 +113,17 @@
             }
         ?>
     </table>
+
+
+    <form method="POST" action="login.php">
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" id="email">
+        <br>
+        <label for="pass">Senha:</label>
+        <input type="password" name="pass" id="pass">
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
 
 </body>
 </html>
